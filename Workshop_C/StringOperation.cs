@@ -12,42 +12,82 @@ public class StringOperation
    //Return the chars in the string
     public int charsInString(string txt1)
     {
-        return 0;
+        int l = txt1.Length;
+        return l;
     }
     
     //return the letters in the string
     public int lettersInString(string txt)
     {
-        return 0;
+        txt = txt.Replace(" ","");
+        int l = txt.Length;
+        return l;
     }
     
     //Count the uppercase letters in a String
     public int upperInString(string txt)
     {
-        return 0;
+        int mayus = 0;
+        for (int i = 0; i< txt.Length; i++)
+        {
+            if (Char.IsUpper(txt,i) == true)
+            {
+                mayus++;
+            }
+        }
+        return mayus;
     }
     
     //count the times a char appears in the string (upper and lower)
     public int charInString(string txt, char a)
     {
-        return 0;
+        int repeat = 0;
+        txt = txt.ToLower();
+        for (int i = 0; i < txt.Length; i++)
+        {
+            if (txt[i] == a)
+            {
+                repeat++;
+            }
+        }
+        return repeat;
     }
    
     //Reverse string
     public string reverseString(string txt)
     {
-        return "";
+        var ctxt = txt.ToCharArray();
+        Array.Reverse(ctxt);
+        return new string(ctxt);
     }
     
     //Is palindrome?
     public bool isPalindrome(string txt)
     {
-        return false;
+        txt = txt.ToLower();
+        txt = txt.Replace(" ","");
+        var ctxt = txt.ToCharArray();
+        Array.Reverse(ctxt);
+        if (txt == new string (ctxt))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     
     //substring in string
     public int substring(string txt, string substring)
     {
-        return 0;
+        int count = 0;
+        int index = txt.IndexOf(substring);
+        while (index >= 0)
+        {
+            index = txt.IndexOf(substring, index + substring.Length);
+            count++;
+        }
+        return count;
     }
 }

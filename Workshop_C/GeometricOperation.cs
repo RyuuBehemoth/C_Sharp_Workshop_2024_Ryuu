@@ -6,55 +6,72 @@ public class GeometricOperation
     public double CalculateCircleArea(double radius)
     {
         // TODO: Implement
-        return 0.0;
+        if (radius < 0)
+        {
+            return 0;
+        }
+        else
+        {
+            double circleArea = double.Pi * Math.Pow(radius, 2);
+            double circleAreaResult = Math.Round(circleArea, 2);
+            return circleAreaResult;
+        }
     }
 
 // 2. Calculate the circumference of a circle given its radius
     public double CalculateCircleCircumference(double radius)
     {
         // TODO: Implement
-        return 0.0;
+        double circumference = 2 * double.Pi * radius;
+        double circumferenceResult = Math.Round(circumference, 2);
+        return circumferenceResult;
     }
 
 // 3. Calculate the area of a rectangle given its width and height
     public double CalculateRectangleArea(double width, double height)
     {
         // TODO: Implement
-        return 0.0;
+        double rentagleArea = width * height;
+        return rentagleArea;
     }
 
 // 4. Calculate the perimeter of a rectangle given its width and height
     public double CalculateRectanglePerimeter(double width, double height)
     {
         // TODO: Implement
-        return 0.0;
+        double rectanglePerimeter = 2 * (width + height);
+        return rectanglePerimeter;
     }
 
 // 5. Calculate the area of a triangle given its base and height
     public double CalculateTriangleArea(double baseLength, double height)
     {
         // TODO: Implement
-        return 0.0;
+        double triangleArea =(baseLength * height)/2;
+        return triangleArea;
     }
 
 // 6. Calculate the perimeter of a triangle given its three sides
     public double CalculateTrianglePerimeter(double side1, double side2, double side3)
     {
         // TODO: Implement
-        return 0.0;
+        double trianglePerimeter = side1 + side2 + side3;
+        return trianglePerimeter;
     }
 
 // 7. Calculate the area of a square given its side length
     public double CalculateSquareArea(double side)
     {
         // TODO: Implement
-        return 0.0;
+        double squareArea =(side*side);
+        return squareArea;
     }
 
 // 8. Calculate the perimeter of a square given its side length
     public double CalculateSquarePerimeter(double side)
     {
-        return 0.0;
+        double squarePerimeter =(4*side);
+        return squarePerimeter;
         // TODO: Implement
     }
 
@@ -62,49 +79,56 @@ public class GeometricOperation
     public double CalculateHypotenuse(double sideA, double sideB)
     {
         // TODO: Implement
-        return 0.0;
+        double hypoteneuse = Math.Sqrt((Math.Pow(sideA,2))+(Math.Pow(sideB,2)));
+        return hypoteneuse;
     }
 
 // 10. Calculate the area of a trapezoid given its bases and height
     public double CalculateTrapezoidArea(double base1, double base2, double height)
     {
         // TODO: Implement
-        return 0.0;
+        double trapezoidArea = ((base1 + base2)*height)/2;
+        return trapezoidArea;
     }
 
 // 11. Calculate the volume of a cylinder given its radius and height
     public double CalculateCylinderVolume(double radius, double height)
     {
         // TODO: Implement
-        return 0.0;
+        double cylinderVolume = Math.PI * Math.Pow(radius,2) * height;
+        return cylinderVolume;
     }
 
 // 12. Calculate the volume of a cube given its side length
     public double CalculateCubeVolume(double side)
     {
         // TODO: Implement
-        return 0.0;
+        double cubeVolume = Math.Pow(side,3);
+        return cubeVolume;
     }
 
 // 13. Calculate the volume of a sphere given its radius
     public double CalculateSphereVolume(double radius)
     {
         // TODO: Implement
-        return 0.0;
+        double sphereVolume = (4 * (Math.PI) * (Math.Pow(radius,3)))/3;
+        return sphereVolume;
     }
 
 // 14. Calculate the surface area of a cylinder given its radius and height
     public double CalculateCylinderSurfaceArea(double radius, double height)
     {
         // TODO: Implement
-        return 0.0;
+        double cylinderSurface = (2 * (Math.PI) * radius * height) + (2* Math.PI * Math.Pow(radius,2));
+        return cylinderSurface;
     }
 
 // 15. Calculate the surface area of a cube given its side length
     public double CalculateCubeSurfaceArea(double side)
     {
         // TODO: Implement
-        return 0.0;
+        double cubeSurface = 6 * Math.Pow(side,2);
+        return cubeSurface;
     }
 
 // 16. Calculate the surface area of a sphere given its radius
