@@ -79,8 +79,15 @@ public class GeometricOperation
     public double CalculateHypotenuse(double sideA, double sideB)
     {
         // TODO: Implement
-        double hypoteneuse = Math.Sqrt((Math.Pow(sideA,2))+(Math.Pow(sideB,2)));
-        return hypoteneuse;
+        if ((sideA == 0) || (sideB == 0))
+        {
+            return 0;
+        }
+        else
+        {
+            double hypoteneuse = Math.Sqrt((Math.Pow(sideA, 2)) + (Math.Pow(sideB, 2)));
+            return hypoteneuse;
+        }
     }
 
 // 10. Calculate the area of a trapezoid given its bases and height
@@ -135,136 +142,245 @@ public class GeometricOperation
     public double CalculateSphereSurfaceArea(double radius)
     {
         // TODO: Implement
-        return 0.0;
+        double sphereSurface = (4 * (Math.PI) * Math.Pow(radius, 2));
+        return sphereSurface;
     }
 
 // 17. Calculate the volume of a cone given its radius and height
     public double CalculateConeVolume(double radius, double height)
     {
         // TODO: Implement
-        return 0.0;
+        double coneVolume = (Math.PI * Math.Pow(radius, 2) * height)/3;
+        return coneVolume;
     }
 
 // 18. Calculate the volume of a pyramid given its base and height
     public double CalculatePyramidVolume(double baseArea, double height)
     {
         // TODO: Implement
-        return 0.0;
+        double pyramidVolume = (baseArea * height) / 3;
+        return pyramidVolume;
     }
 
 // 19. Calculate the area of a regular polygon given its number of sides and side length
     public double CalculateRegularPolygonArea(int numSides, double sideLength)
     {
         // TODO: Implement
-        return 0.0;
+        if (numSides == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            double angle = (360 / (2 * numSides));
+            angle = angle * (Math.PI / 180);
+            double apotem = (sideLength / (2 * Math.Tan(angle)));
+            double perimeter = numSides * sideLength;
+            double regularPolygonArea = (perimeter * apotem) / 2;
+            return regularPolygonArea;
+        }
     }
 
 // 20. Calculate the perimeter of a regular polygon given its number of sides and side length
     public double CalculateRegularPolygonPerimeter(int numSides, double sideLength)
     {
         // TODO: Implement
-        return 0.0;
+        double regularPolygonPerimeter = numSides * sideLength;
+        return regularPolygonPerimeter;
     }
 
 // 21. Check if three sides can form a triangle
     public bool CanFormTriangle(double side1, double side2, double side3)
     {
-        return false;
+        if ((side1 + side2) > side3)
+        {
+            return true;
+        }
+        else 
+        { 
+            return false;
+        }
     }
 
 // 22. Calculate the area of a parallelogram given its base and height
     public double CalculateParallelogramArea(double baseLength, double height)
     {
-        return 0.0;
+        double parallelogramArea = baseLength * height;
+        return parallelogramArea;
     }
 
 // 23. Calculate the perimeter of a parallelogram given its base and sides
     public double CalculateParallelogramPerimeter(double baseLength, double sideLength)
     {
-        return 0.0;
+        double parallelogramPerimeter = 2 * (baseLength + sideLength);
+        return parallelogramPerimeter;
     }
 
 // 24. Check if four sides can form a rectangle
     public bool CanFormRectangle(double side1, double side2, double side3, double side4)
     {
-        return false;
+        if ((side1 == side3) && (side2 == side4))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 // 25. Calculate the diagonal of a rectangle given its width and height
     public double CalculateRectangleDiagonal(double width, double height)
     {
-        return 0.0;
+        if (width == 0)
+        {
+            return height;
+        }
+        else
+        {
+            double rectangleDiagonal = CalculateHypotenuse(width, height);
+            return rectangleDiagonal;
+        }
     }
 
 // 26. Check if a set of points form a right triangle
     public bool IsRightTriangle(double sideA, double sideB, double hypotenuse)
     {
-        return false;
+        if ((Math.Pow(sideA,2) + Math.Pow(sideB,2)) == Math.Pow(hypotenuse,2))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 // 27. Calculate the area of an ellipse given its major and minor axes
     public double CalculateEllipseArea(double majorAxis, double minorAxis)
     {
-        return 0.0;
+        double ellipseArea = Math.PI * majorAxis * minorAxis;
+        return ellipseArea;
     }
 
 // 28. Check if three angles can form a triangle (sum of angles must be 180 degrees)
     public bool CanFormTriangleFromAngles(double angle1, double angle2, double angle3)
     {
-        return false;
+        if (angle1 != 0 && angle2 != 0 && angle3 != 0)
+        {
+            if ((angle1 + angle2 + angle3) == 180)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
     }
 
 // 29. Calculate the surface area of a cone given its radius and slant height
     public double CalculateConeSurfaceArea(double radius, double slantHeight)
     {
-        return 0.0;
+        double coneSurfaceArea = (Math.PI * radius * slantHeight) + (Math.PI * Math.Pow(radius,2));
+        return coneSurfaceArea;
     }
 
 // 30. Calculate the perimeter of an ellipse given its major and minor axes
     public double CalculateEllipsePerimeter(double majorAxis, double minorAxis)
     {
-        return 0.0;
+        if ((majorAxis == 0) || (minorAxis == 0))
+        {
+            return 0;
+        }
+        else
+        {
+            double ellipsePerimeter = (Math.PI) * ((3 * (majorAxis + minorAxis)) - Math.Sqrt(((3 * majorAxis) + minorAxis) * (majorAxis + (3 * minorAxis))));
+            ellipsePerimeter = Math.Round(ellipsePerimeter, 0);
+            return ellipsePerimeter;
+        }
     }
 
 // 31. Use the Law of Cosines to find the third side given two sides and the included angle
     public double CalculateThirdSideLawOfCosines(double sideA, double sideB, double angleDegrees)
     {
-        return 0.0;
+        if (sideA == 0 || sideB == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            double angleRadian = (Math.PI * angleDegrees) / 180;
+            double thirdSide = Math.Sqrt(Math.Pow(sideA, 2) + Math.Pow(sideB, 2) - (2 * sideA * sideB * Math.Cos(angleRadian)));
+            return thirdSide;   //respuesta incorrecta y corregida en clase
+        }
     }
 
 // 32. Use the Law of Cosines to find an angle given three sides of a triangle
     public double CalculateAngleLawOfCosines(double sideA, double sideB, double sideC)
     {
-        return 0.0;
+        double angleLawCosines = Math.Acos((Math.Pow(sideA,2) - Math.Pow(sideB,2) - Math.Pow(sideC,2))/(-2 * sideB * sideC));
+        return angleLawCosines; //respuesta incorrecta
     }
 
 // 33. Use the Law of Sines to find a side given an angle and its opposite side
     public double CalculateSideLawOfSines(double angleA, double sideA, double angleB)
     {
-        return 0.0;
+        if (sideA == 0)
+        {
+            return double.NaN;
+            return 0;   //pide retornar 0 y NaN
+        }
+        else
+        {
+            angleA = (Math.PI * angleA) / 180;
+            angleB = (Math.PI * angleB) / 180;
+            double sideB = (sideA * Math.Sin(angleB)) / (Math.Sin(angleA));
+            return sideB;
+        }
     }
 
 // 34. Use the Law of Sines to find an angle given two angles and one side
     public double CalculateAngleLawOfSines(double angleA, double angleB, double sideC)
     {
-        return 0.0;
+        angleA = (Math.PI * angleA)/180;
+        angleB = (Math.PI * angleB)/180;
+        double angleC = 0; //esta mal planteado
+        return 0;
     }
 
 // 35. Find the area of a triangle given two sides and the included angle using the Law of Cosines
     public double CalculateTriangleAreaWithCosine(double sideA, double sideB, double angleDegrees)
     {
-        return 0.0;
+        double angleRadian = (Math.PI * angleDegrees)/180;
+        double triangleAreaCosine = (sideA * sideB * Math.Sin(angleRadian))/2;
+        return triangleAreaCosine;
     }
 
 // 36. Check if three sides can form a triangle using the Law of Cosines
     public bool CanFormTriangleWithCosines(double sideA, double sideB, double sideC)
     {
-        return false;
+        double angleA = ((Math.Acos((Math.Pow(sideA, 2) - Math.Pow(sideB, 2) - Math.Pow(sideC, 2)) / (-2 * sideB * sideC))) * 180)/Math.PI;
+        double angleB = ((Math.Acos((Math.Pow(sideB, 2) - Math.Pow(sideA, 2) - Math.Pow(sideC, 2)) / (-2 * sideA * sideC))) * 180) / Math.PI;
+        double angleC = ((Math.Acos((Math.Pow(sideC, 2) - Math.Pow(sideA, 2) - Math.Pow(sideB, 2)) / (-2 * sideA * sideB))) * 180) / Math.PI;
+        if ((angleA + angleB + angleC) == 180)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 // 37. Calculate the perimeter of a triangle using the Law of Cosines
     public double CalculateTrianglePerimeterWithCosines(double sideA, double sideB, double sideC)
     {
+
         return 0.0;
     }
 

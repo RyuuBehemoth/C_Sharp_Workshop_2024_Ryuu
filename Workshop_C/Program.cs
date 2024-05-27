@@ -2,19 +2,14 @@
 
 
 
-int[] array = { -5,-7,-3,4,-1};
-for (int i = 0; i < array.Length; i++) 
-{ 
-    Console.WriteLine(array[i]); 
-}
-List<int> result = new List<int>();
-result = array.ToList();
-result.Sort();
-array = result.ToArray();
+double angle = (360 / (2 * 5));
+angle = angle * (Math.PI / 180);
+double apotem = (10 / (2 * Math.Tan(angle)));
+double tan = Math.Tan(angle);
+double perimeter = 5 * 10;
+double regularPolygonArea = (perimeter * apotem) / 2;
 
-for (int i = 0; i < array.Length; i++)
-{
-    Console.WriteLine(array[i]);
-}
-
-Console.WriteLine(array.Max());
+Console.WriteLine(angle);
+Console.WriteLine(apotem);
+Console.WriteLine(tan);
+Console.WriteLine(regularPolygonArea);
