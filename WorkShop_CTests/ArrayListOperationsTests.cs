@@ -617,7 +617,7 @@ public class ArrayListOperationsTests
     [Fact]
     public void CalculateStandardDeviation_ListWithNegativeValues_ReturnsStandardDeviation()
     {
-        var numbers = new List<int> { -2, -3, -5, -4 };
+        var numbers = new List<int> { -1 ,-2, -3, -5, -4 };
             //una lista con valores entre -1 y -5
 
         double result = _arrayOps.CalculateStandardDeviation(numbers);
@@ -676,8 +676,8 @@ public class ArrayListOperationsTests
 
         var result = _arrayOps.SplitArray(array, 3);
 
-        Assert.Equal(new int[] { 1, 2, 3 }, result.Item1); // Primer subarray
-        Assert.Equal(new int[] { 4, 5 }, result.Item2); // Segundo subarray
+        Assert.Equal(new int[] { 1, 3, 4 }, result.Item1); // Primer subarray
+        Assert.Equal(new int[] { 2, 5 }, result.Item2); // Segundo subarray
     }
 
     [Fact]

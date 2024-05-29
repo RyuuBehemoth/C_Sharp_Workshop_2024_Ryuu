@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkShop_CTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2059c424d7020e0e9f894c1c19feb047c4ab4ee5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8dfd9eaf9f1f9b5850959a6cdb02a2fe9ed7c86c")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkShop_CTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkShop_CTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
