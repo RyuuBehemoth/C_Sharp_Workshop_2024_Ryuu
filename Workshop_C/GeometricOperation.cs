@@ -399,7 +399,9 @@ public class GeometricOperation
 // 38. Calculate the height of a triangle using the Law of Cosines
     public double CalculateTriangleHeightWithCosines(double sideA, double angleDegrees)
     {
-        return 0.0;
+        double angleRadian = (Math.PI * angleDegrees)/180;
+        double triangleHeight = sideA * Math.Sin(angleRadian);
+        return triangleHeight;
     }
 
 // 39. Check if an angle is a right angle using the Law of Cosines

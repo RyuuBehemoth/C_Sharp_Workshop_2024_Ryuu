@@ -17,7 +17,7 @@ public class StringOperation
     }
     
     //return the letters in the string
-    public int lettersInString(string txt)
+    public int lettersInString(string txt) 
     {
         txt = txt.Replace(" ","");
         int l = txt.Length;
