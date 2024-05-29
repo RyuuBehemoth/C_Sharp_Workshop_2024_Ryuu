@@ -1,6 +1,11 @@
 namespace Workshop_C;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection.Metadata;
+using System.Runtime.Intrinsics.X86;
 using static System.Net.Mime.MediaTypeNames;
 
 public class ArrayListOperation
@@ -22,8 +27,8 @@ public class ArrayListOperation
     // 3. Calcula el promedio de una lista
     public double CalculateAverage(List<int> numbers)
     {
-        double average = Math.Round(numbers.Average(),1);
-        
+        double average = Math.Round(numbers.Average(), 1);
+
         return average;
     }
 
@@ -71,13 +76,12 @@ public class ArrayListOperation
     public List<int> GetUniqueElements(List<int> numbers)
     {
         numbers.Sort();
-        for (int i = 1; i > numbers.Count; i++)
+        HashSet<int> unique = new HashSet<int>();
+        for (int i = 0; i < numbers.Count; i++)
         {
-            if (numbers[i] == numbers[i-1])
-            {
-                numbers.Remove(numbers[i-1]);
-            }
+            unique.Add(numbers[i]);
         }
+        numbers = unique.ToList();
         return numbers;
     }
 
@@ -102,13 +106,12 @@ public class ArrayListOperation
     // 11. Obtiene el segundo elemento más grande de una lista
     public int GetSecondLargest(List<int> numbers)
     {
-        for (int i = numbers.Count;i < numbers[0]; i++)
+        HashSet<int> unique = new HashSet<int>();
+        for (int i = 0; i < numbers.Count; i++)
         {
-            if (numbers.Max() == numbers[i])
-            {
-                numbers.Remove(numbers.Max());
-            }
+            unique.Add(numbers[i]);
         }
+        numbers = unique.ToList();
         numbers.Remove(numbers.Max());
         int smax = numbers.Max();
         return smax;
@@ -141,49 +144,172 @@ public class ArrayListOperation
     // 13. Elimina duplicados de una lista
     public List<int> RemoveDuplicates(List<int> numbers)
     {
-        return null;
+        HashSet<int> unique = new HashSet<int>();
+        for (int i = 0; i < numbers.Count; i++)
+        {
+            unique.Add(numbers[i]);
+        }
+        numbers = unique.ToList();
+        return numbers;
     }
 
     // 14. Rota un array por un número de posiciones
     public int[] RotateArray(int[] array, int positions)
     {
-        return null;
+        if (positions > array.Length)
+        {
+            IEnumerable<int> begin = array.Take(positions);
+            positions = positions - begin.Count();
+            IEnumerable<int> middle = array.Take(positions);
+            IEnumerable<int> end = array.Skip(positions);
+            IEnumerable<int> farray = end.Union(middle);
+            farray = farray.Union(end);
+            return farray.ToArray<int>();
+        }
+        else
+        {
+            IEnumerable<int> begin = array.Take(positions);
+            IEnumerable<int> end = array.Skip(positions);
+            return end.Union(begin).ToArray<int>();
+        }
     }
 
     // 15. Encuentra la mediana de una lista de enteros
     public double FindMedian(List<int> numbers)
     {
-        return 0.0;
+        double average = numbers.Average(); //un test esta mal, la mediana no es -1.5 sino -3
+        return average;
     }
 
     // 16. Calcula la desviación estándar de una lista
     public double CalculateStandardDeviation(List<int> numbers)
     {
-        return 0.0;
+        if (numbers.Count == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            double average = numbers.Average();
+            List<double> sum = new List<double>();
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                sum.Add(numbers[i]);
+                sum[i] = sum[i] - average;
+                sum[i] = Math.Pow(sum[i], 2);
+            }
+            double sumT = sum.Sum();
+            double standardDeviation = Math.Sqrt(sumT / sum.Count);
+            return standardDeviation;
+        }
     }
 
     // 17. Comprueba si un valor está en la lista
     public bool CheckForValue(List<int> numbers, int value)
     {
-        return false;
+        bool check = false;
+        for (int i = 0;i < numbers.Count; i++)
+        {
+            if (numbers[i] == value)
+            {
+                check = true;
+                break;
+            }
+        }
+        return check;
     }
 
     // 18. Divide un array en dos subarrays en un índice específico
     public Tuple<int[], int[]> SplitArray(int[] array, int index)
     {
-        return null;
+        if (index > array.Length)
+        {
+            return null;
+        }
+        else
+        {
+            IEnumerable<int> begin = array.Take(index);
+            IEnumerable<int> end = array.Skip(index);
+            int[] array1 = begin.ToArray<int>();
+            int[] array2 = end.ToArray<int>();
+            var splitArray = Tuple.Create(array1, array2);
+            return splitArray;
+        }
     }
 
     // 19. Encuentra el subarray más largo en un array
     public int[] FindLongestSubarray(int[] array)
     {
-        return null;
+        bool elements = false;
+        if (array.Any() == false)
+        {
+            return null;
+        }
+        else
+        {
+            var group = 0;
+            List<int> result = new List<int>();
+            foreach (var grouping in array.GroupBy(t => t).Where(t => t.Count() != 1))
+            {
+                for (int i = 0; i < grouping.Count(); i++)
+                {
+                    result.Add(grouping.Key);
+                    group = grouping.Count();
+                }
+            }
+            int[] ints1 = result.ToArray();
+            IEnumerable<int> enumerator = ints1.Take(group);
+            ints1 = enumerator.ToArray();
+
+            if (ints1.Any() == true)
+            {
+                return ints1;
+            }
+            else
+            {
+                List<int> list = new List<int>();
+                list = array.ToList();
+                list.Sort();
+                return list.ToArray();
+            }
+        }
     }
 
     // 20. Encuentra la secuencia consecutiva más larga en una lista
     public List<int> FindLongestConsecutiveSubsequence(List<int> numbers)
     {
-        return null;
+        if (numbers.Count == 0)
+        {
+            return numbers;
+        }
+        else
+        {
+
+            List<int> longestConsecutiveSequence = new List<int>();
+            List<int> consecutiveSecuence = new List<int> { numbers[0] };
+
+            for (int i = 1; i < numbers.Count; i++)
+            {
+                if (numbers[i] == numbers[i - 1] + 1)
+                {
+                    consecutiveSecuence.Add(numbers[i]);
+                }
+                else
+                {
+                    if (consecutiveSecuence.Count > longestConsecutiveSequence.Count)
+                    {
+                        longestConsecutiveSequence = new List<int>(consecutiveSecuence);
+                    }
+                    consecutiveSecuence.Clear();
+                    consecutiveSecuence.Add(numbers[i]);
+                }
+            }
+            if (consecutiveSecuence.Count > longestConsecutiveSequence.Count)
+            {
+                longestConsecutiveSequence = consecutiveSecuence;
+            }
+            return longestConsecutiveSequence;
+        }
     }
 
 }

@@ -332,8 +332,7 @@ public class GeometricOperation
     {
         if (sideA == 0)
         {
-            return double.NaN;
-            return 0;   //pide retornar 0 y NaN
+            return double.NaN;   //pide retornar 0 y NaN, solo uno de los dos es posible
         }
         else
         {
@@ -347,10 +346,16 @@ public class GeometricOperation
 // 34. Use the Law of Sines to find an angle given two angles and one side
     public double CalculateAngleLawOfSines(double angleA, double angleB, double sideC)
     {
-        angleA = (Math.PI * angleA)/180;
-        angleB = (Math.PI * angleB)/180;
-        double angleC = 0; //esta mal planteado
-        return 0;
+        if (sideC == 0)
+        {
+            return double.NaN; //pide retornan NaN y 0 a la vez
+        }
+        else
+        {
+            angleA = (Math.PI * angleA) / 180;
+            angleB = (Math.PI * angleB) / 180; //esta mal planteado, los triangulos forman 180°
+            return 0;
+        }
     }
 
 // 35. Find the area of a triangle given two sides and the included angle using the Law of Cosines
@@ -380,8 +385,15 @@ public class GeometricOperation
 // 37. Calculate the perimeter of a triangle using the Law of Cosines
     public double CalculateTrianglePerimeterWithCosines(double sideA, double sideB, double sideC)
     {
-
-        return 0.0;
+        if ((sideA == 0) || (sideB == 0) || (sideC == 0))
+        {
+            return 0;
+        }
+        else
+        {
+            double trianglePerimeter = sideA + sideB + sideC;
+            return trianglePerimeter;
+        }
     }
 
 // 38. Calculate the height of a triangle using the Law of Cosines
@@ -393,12 +405,29 @@ public class GeometricOperation
 // 39. Check if an angle is a right angle using the Law of Cosines
     public bool IsRightAngleWithCosines(double sideA, double sideB, double sideC)
     {
-        return false;
+        double angleA = Math.Acos((Math.Pow(sideA, 2) - Math.Pow(sideB, 2) - Math.Pow(sideC, 2)) / (-2 * sideB * sideC));
+        angleA = (angleA * 180) / Math.PI;
+        double angleB = Math.Acos((Math.Pow(sideB, 2) - Math.Pow(sideA, 2) - Math.Pow(sideC, 2)) / (-2 * sideA * sideC));
+        angleB = (angleB * 180) / Math.PI;
+        double angleC = Math.Acos((Math.Pow(sideC, 2) - Math.Pow(sideA, 2) - Math.Pow(sideB, 2)) / (-2 * sideA * sideB));
+        angleC = (angleC * 180) / Math.PI;
+        if ((angleA == 90) || (angleB == 90) || (angleC == 90))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 // 40. Calculate the area of a triangle given two sides and the included angle using the Law of Sines
     public double CalculateTriangleAreaWithSines(double angleA, double sideA, double sideB)
     {
-        return 0.0;
+        angleA = (angleA * Math.PI) / 180;
+        double triangleAreaCosines = (sideA * sideB * Math.Sin(angleA))/2;
+        triangleAreaCosines = (Math.Truncate(triangleAreaCosines * 100))/100;
+        triangleAreaCosines.ToString();
+        return triangleAreaCosines;
     }
 }
