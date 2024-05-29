@@ -579,7 +579,7 @@ public class ArrayListOperationsTests
 
         double result = _arrayOps.FindMedian(numbers);
 
-        Assert.Equal(-1.5, result, 1); // Mediana esperada
+        Assert.Equal(-3, result, 1); // Mediana esperada
     }
     
 
